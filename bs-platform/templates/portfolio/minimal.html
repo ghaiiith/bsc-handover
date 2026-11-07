@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{name}}</title>
+<style>
+  .bs-pf { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --accent:#0ea5e9; --bg:#ffffff;
+    background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+    line-height:1.7; padding:0 0 64px; }
+  .bs-pf * { box-sizing:border-box; }
+  .bs-pf .wrap { max-width:820px; margin:0 auto; padding:0 20px; }
+  .bs-pf header { padding:56px 0 32px; border-bottom:1px solid var(--line); margin-bottom:36px; }
+  .bs-pf .avatar { width:96px; height:96px; border-radius:50%; object-fit:cover; border:3px solid var(--accent); margin-bottom:18px; }
+  .bs-pf h1 { font-size:2.1rem; margin:0 0 6px; letter-spacing:-.02em; }
+  .bs-pf .headline { color:var(--accent); font-weight:600; margin:0 0 10px; }
+  .bs-pf .meta { color:var(--muted); font-size:.92rem; margin:0; }
+  .bs-pf .badge { display:inline-block; background:#dcfce7; color:#166534; border-radius:999px;
+    padding:3px 12px; font-size:.8rem; font-weight:600; margin-top:12px; }
+  .bs-pf .links { margin-top:16px; display:flex; flex-wrap:wrap; gap:10px; }
+  .bs-pf .links a { color:var(--ink); text-decoration:none; border:1px solid var(--line);
+    border-radius:8px; padding:6px 14px; font-size:.88rem; }
+  .bs-pf .links a:hover { border-color:var(--accent); color:var(--accent); }
+  .bs-pf section { margin-bottom:40px; }
+  .bs-pf h2 { font-size:.82rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+    margin:0 0 16px; font-weight:700; }
+  .bs-pf .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:40px; }
+  .bs-pf .stat { border:1px solid var(--line); border-radius:12px; padding:14px; text-align:center; }
+  .bs-pf .stat b { display:block; font-size:1.5rem; }
+  .bs-pf .stat span { color:var(--muted); font-size:.78rem; }
+  .bs-pf .pills { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0; }
+  .bs-pf .pills li { background:#f1f5f9; border-radius:999px; padding:5px 14px; font-size:.88rem; }
+  .bs-pf .item { padding:0 0 20px; margin-bottom:20px; border-bottom:1px solid var(--line); }
+  .bs-pf .item:last-child { border-bottom:0; margin-bottom:0; padding-bottom:0; }
+  .bs-pf .item h3 { margin:0 0 2px; font-size:1.05rem; }
+  .bs-pf .item .sub { color:var(--muted); font-size:.9rem; margin:0 0 8px; }
+  .bs-pf .item p { margin:0; color:#334155; font-size:.95rem; }
+  .bs-pf footer { border-top:1px solid var(--line); padding-top:20px; color:var(--muted); font-size:.82rem; }
+  @media (max-width:640px){ .bs-pf .stats{grid-template-columns:repeat(2,1fr);} .bs-pf h1{font-size:1.6rem;} }
+</style>
+</head>
+<body>
+<div class="bs-pf" dir="{{dir}}">
+  <div class="wrap">
+    <header>
+      {{#if avatar_url}}<img class="avatar" src="{{avatar_url}}" alt="{{name}}">{{/if}}
+      <h1>{{name}}</h1>
+      {{#if headline}}<p class="headline">{{headline}}</p>{{/if}}
+      {{#if location}}<p class="meta">{{location}}</p>{{/if}}
+      {{#if available}}<span class="badge">{{available}}</span>{{/if}}
+      {{#if links}}
+      <div class="links">{{#each links}}<a href="{{url}}" target="_blank" rel="noopener nofollow">{{label}}</a>{{/each}}</div>
+      {{/if}}
+    </header>
+
+    <div class="stats">
+      <div class="stat"><b>{{skills_count}}</b><span>Skills</span></div>
+      <div class="stat"><b>{{projects_count}}</b><span>Projects</span></div>
+      <div class="stat"><b>{{courses_count}}</b><span>Courses</span></div>
+      <div class="stat"><b>{{certificates_count}}</b><span>Certificates</span></div>
+    </div>
+
+    {{#if bio}}<section><h2>About</h2><p>{{bio}}</p></section>{{/if}}
+
+    {{#if skills}}
+    <section><h2>Skills</h2><ul class="pills">{{#each skills}}<li>{{.}}</li>{{/each}}</ul></section>
+    {{/if}}
+
+    {{#if experience}}
+    <section><h2>Experience</h2>
+      {{#each experience}}
+      <div class="item">
+        <h3>{{title}}</h3>
+        <p class="sub">{{company}}{{#if location}} · {{location}}{{/if}} · {{period}}</p>
+        {{#if description}}<p>{{description}}</p>{{/if}}
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    {{#if education}}
+    <section><h2>Education</h2>
+      {{#each education}}
+      <div class="item">
+        <h3>{{degree}}{{#if field}} — {{field}}{{/if}}</h3>
+        <p class="sub">{{institution}} · {{period}}</p>
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    {{#if projects}}
+    <section><h2>Projects</h2>
+      {{#each projects}}
+      <div class="item">
+        <h3>{{name}}</h3>
+        {{#if technologies}}<p class="sub">{{technologies}}</p>{{/if}}
+        {{#if description}}<p>{{description}}</p>{{/if}}
+        {{#if url}}<p class="sub"><a href="{{url}}" target="_blank" rel="noopener nofollow">{{url}}</a></p>{{/if}}
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    {{#if certificates}}
+    <section><h2>Certificates</h2>
+      {{#each certificates}}
+      <div class="item">
+        <h3>{{title}}</h3>
+        <p class="sub">{{instructor}} · {{year}} · {{code}}</p>
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    {{#if courses}}
+    <section><h2>Completed courses</h2><ul class="pills">{{#each courses}}<li>{{title}}</li>{{/each}}</ul></section>
+    {{/if}}
+
+    <footer>{{name}} · {{year}} · <a href="{{portfolio_url}}">{{portfolio_url}}</a></footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "BS Platform Studio",
+  "outputfilename": "BS Platform Studio",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "EduWork",
+    "email": ""
+  },
+  "info": {
+    "companyName": "EduWork",
+    "productName": "BS Platform Studio",
+    "productVersion": "1.0.0",
+    "copyright": "Copyright © 2026 EduWork",
+    "comments": "Desktop content production studio for EduWork"
+  },
+  "wailsjsdir": "./frontend/src/bindings",
+  "assetdir": "./frontend/dist",
+  "reloaddirs": "internal",
+  "debounceMS": 100,
+  "devServer": "localhost:34115"
+}

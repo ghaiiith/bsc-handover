@@ -1,0 +1,47 @@
+-- Grant authenticated users SELECT on onboarding columns added in 058/060.
+-- Migration 044 column-scoped SELECT does not include new columns automatically.
+
+REVOKE SELECT ON public.users FROM authenticated;
+
+GRANT SELECT (
+  id,
+  full_name,
+  full_name_ar,
+  avatar_url,
+  role,
+  bio,
+  bio_ar,
+  is_active,
+  created_at,
+  headline,
+  skills,
+  experience,
+  education,
+  projects,
+  links,
+  preferred_role,
+  location,
+  years_of_experience,
+  availability,
+  profile_completed_at,
+  preferences,
+  portfolio_is_public,
+  portfolio_slug,
+  account_type,
+  onboarding_completed,
+  onboarding_completed_at,
+  primary_goal,
+  skill_level,
+  interests,
+  discovery_source,
+  discovery_source_other,
+  onboarding_version,
+  onboarding_updated_at,
+  instructor_intent,
+  company_intent,
+  freelancer_intent,
+  onboarding_company_name,
+  onboarding_company_industry,
+  onboarding_company_size,
+  onboarding_meta
+) ON public.users TO authenticated;

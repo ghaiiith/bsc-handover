@@ -1,0 +1,26 @@
+Business Skills — Project Handover
+==================================
+
+What is in this archive
+-----------------------
+  bs-platform/                   The full source tree (no node_modules, no build output,
+                                 no secrets). Start with HANDOVER.md inside it.
+  bs-platform-git-history.git/   Bare git repository with the complete commit history.
+
+Getting started
+---------------
+  1. Read  bs-platform/HANDOVER.md        — the codebase, the traps, the open gaps
+  2. Read  bs-platform/SERVER_RUNBOOK.md  — deploys, backups, troubleshooting
+  3. cd bs-platform && npm ci && npm run typecheck && npm test
+     (expect 214 passing tests)
+
+To work with full git history instead of the plain folder:
+  git clone bs-platform-git-history.git bs-platform-repo
+
+NOT included, delivered separately and securely
+-----------------------------------------------
+  - .env.local             (all API keys and secrets)
+  - SSH access to 169.58.37.33
+  - Admin account passwords
+
+Rotate every credential that has been shared over chat before using it.

@@ -1,0 +1,10 @@
+---
+description: DEPRECATED — see business-skills-platform.mdc
+alwaysApply: false
+---
+
+# Deprecated
+
+This rule is superseded by **`.cursor/rules/business-skills-platform.mdc`**.
+
+The platform is now **Business Skills** (BS Platform). Start with `docs/AI_QUICKSTART.md`.

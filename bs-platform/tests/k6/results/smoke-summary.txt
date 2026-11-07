@@ -1,0 +1,26 @@
+================ k6 SMOKE SUMMARY ================
+  Total requests               24
+  Request rate                 0.58 req/s
+  Iterations                   4
+  Max VUs                      1
+  HTTP failed                  0.00% (0 failed reqs)
+  Checks passed                100.00% (48/48)
+  --- latency (http_req_duration) ---
+  avg                          700.9ms
+  min                          209.4ms
+  med                          701.1ms
+  p90                          999.9ms
+  p95                          1225.1ms
+  max                          2612.3ms
+  --- per-page p95 ---
+  community                    p95 2330.0ms  avg 1144.3ms
+  courses                      p95 1174.7ms  avg 775.5ms
+  courses_search               p95 734.1ms  avg 573.3ms
+  home                         p95 515.6ms  avg 307.3ms
+  jobs                         p95 1015.5ms  avg 767.7ms
+  services                     p95 844.2ms  avg 637.7ms
+  --- thresholds ---
+  checks rate>0.99             PASS
+  http_req_duration p(95)<3000 PASS
+  http_req_failed rate<0.01    PASS
+=========================================================

@@ -1,0 +1,24 @@
+================ k6 STRESS SUMMARY ================
+  Total requests               7464
+  Request rate                 24.83 req/s
+  Iterations                   7464
+  Max VUs                      100
+  HTTP failed                  0.01% (1 failed reqs)
+  Checks passed                99.99% (14926/14928)
+  --- latency (http_req_duration) ---
+  avg                          1567.7ms
+  min                          17.1ms
+  med                          1101.7ms
+  p90                          3187.4ms
+  p95                          4236.3ms
+  max                          14788.1ms
+  --- per-page p95 ---
+  community                    p95 3743.7ms  avg 1444.6ms
+  courses                      p95 4802.4ms  avg 1776.0ms
+  courses_search               p95 4000.8ms  avg 1581.1ms
+  home                         p95 5163.5ms  avg 1678.0ms
+  jobs                         p95 3928.3ms  avg 1461.0ms
+  services                     p95 3682.5ms  avg 1458.2ms
+  --- thresholds ---
+  http_req_failed rate<0.10    PASS
+=========================================================

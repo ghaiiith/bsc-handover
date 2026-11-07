@@ -1,0 +1,25 @@
+{
+  "crons": [
+    {
+      "path": "/api/jobs/cron-fetch",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/video-provider-health",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/expire-jobs",
+      "schedule": "30 4 * * *"
+    },
+    {
+      "path": "/api/cron/monthly-job-status",
+      "schedule": "0 8 1 * *"
+    },
+    {
+      "path": "/api/cron/expire-stale-payments",
+      "schedule": "*/30 * * * *"
+    }
+  ],
+  "buildCommand": "npm run build"
+}

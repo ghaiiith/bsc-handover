@@ -1,0 +1,67 @@
+---
+description: Business Skills (BS Platform) — identity, security, architecture, and agent workflow
+alwaysApply: true
+---
+
+# Business Skills Platform — Cursor AI Rules
+
+> **Read first:** `docs/AI_QUICKSTART.md` → `docs/PROJECT_CONTEXT.md` → task-relevant files only.
+> Do **not** scan the whole repo. Legacy rule `eduwork-platform.mdc` is superseded by this file.
+
+## Project Identity
+
+- **Official name:** Business Skills · **Short:** BS Platform · **Legacy:** EduWork
+- Arabic-first, RTL-first; English supported (`next-intl`, `src/locales/`)
+- Stack: Next.js 16 App Router, React 19, TypeScript, Tailwind v4, Supabase, shadcn/ui
+- Do **not** reintroduce EduWork branding in user-facing copy unless updating legacy references
+- Internal package/db keys may still use `eduwork` — intentional (`src/lib/brand/constants.ts`)
+
+## Token-Saving Workflow
+
+1. Read `docs/PROJECT_CONTEXT.md` and `docs/CURRENT_STATUS.md` before large tasks
+2. Open **only** files relevant to the request:
+   - **Auth/RBAC:** `src/lib/auth/`, `src/proxy.ts`, `docs/auth-claims-rbac.md`
+   - **Video:** `src/lib/video/`, `src/lib/video-providers/`, playback API routes, player components
+   - **UI:** specific page/component + `src/lib/brand/constants.ts` for branding
+   - **DB:** relevant `supabase/migrations/` + typed helpers in `src/lib/`
+   - **Branding:** `src/components/brand/`, `globals.css`, metadata, Navbar/Footer/Auth
+3. For large features, consult or create docs under `docs/` first
+
+## Core Coding Standards
+
+- TypeScript strictly — no `any`; types in `src/types/`
+- App Router only (`src/app/`); components in `src/components/`
+- `async/await`; handle loading, error, empty states
+- i18n keys only — never hardcode UI strings
+- shadcn/ui first; Tailwind only — no inline styles or separate CSS files
+- Typed Supabase selects; never ignore `error`; RLS-aware queries
+- Prefer small, safe, incremental changes; inspect relevant files before editing
+
+## Security (non-negotiable)
+
+- Never expose `SUPABASE_SERVICE_ROLE_KEY` to the client
+- Never use `user_metadata` for authorization
+- `public.users` is source of truth for role/status; JWT `app_metadata` is cached projection
+- Prefer JWT `app_metadata` claims for proxy RBAC (`src/proxy.ts`, `src/lib/auth/proxy-rbac.ts`)
+- Never bypass RLS casually; privileged routes fail safe when role cannot be proven
+- Route handlers must validate auth/role; inactive users → `/account-suspended`
+
+## Video
+
+- Use provider abstraction (`src/lib/video-providers/`)
+- Vimeo for high-traffic delivery; R2 for advanced/custom/backup
+- Do **not** move heavy video bytes through Next.js unless explicitly required
+- Preserve playback sessions, watermark, and AES/HLS protection logic
+
+## UI & Branding
+
+- Colors: orange `#E57D17` (primary/action), teal `#045F6B` (growth/verified/success)
+- BS logo: vector SVG (`/logo-traced.svg`), not raster
+- Mobile: design mobile-first; video + lesson nav first; AI secondary
+- No icons-only controls without labels on mobile; preserve accessibility and RTL
+
+## Verification After Edits
+
+Run or recommend: `npm run typecheck`, `npm test`, `npm run lint`
+If full-repo lint has pre-existing errors, report separately and confirm changed files are clean.
+Preserve existing test/typecheck behavior.

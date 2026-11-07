@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <body style="margin:0;background:#f8fafc;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;padding:24px 0;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="440" cellpadding="0" cellspacing="0" style="max-width:440px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
+            <tr>
+              <td style="padding:28px 32px 8px;text-align:center;">
+                <div style="font-size:20px;font-weight:800;color:#f97316;">Business Skills</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:8px 32px 0;text-align:center;">
+                <h1 style="font-size:22px;margin:8px 0 4px;">تأكيد بريدك الإلكتروني</h1>
+                <p style="font-size:14px;color:#64748b;margin:0 0 4px;">Confirm your email to finish creating your account.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 32px 8px;text-align:center;">
+                <a href="{{ .ConfirmationURL }}"
+                   style="display:inline-block;background:#f97316;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:12px 28px;border-radius:10px;">
+                  تأكيد البريد · Confirm email
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 32px;text-align:center;">
+                <p style="font-size:13px;color:#64748b;margin:0 0 8px;">
+                  أو أدخل هذا الرمز في الموقع · Or enter this code on the site:
+                </p>
+                <div style="font-size:30px;font-weight:800;letter-spacing:8px;color:#0f172a;background:#f1f5f9;border-radius:10px;padding:12px 0;">
+                  {{ .Token }}
+                </div>
+                <p style="font-size:12px;color:#94a3b8;margin:10px 0 0;">
+                  الرمز صالح لمدة ساعة · This code expires in 1 hour.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:8px 32px 28px;text-align:center;">
+                <p style="font-size:12px;color:#94a3b8;margin:0;">
+                  إذا لم تنشئ هذا الحساب، تجاهل هذه الرسالة.<br/>
+                  If you didn't create an account, you can ignore this email.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

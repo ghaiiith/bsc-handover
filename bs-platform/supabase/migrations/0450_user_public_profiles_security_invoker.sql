@@ -1,0 +1,25 @@
+-- 045_user_public_profiles_security_invoker.sql
+-- Resolves the Supabase Advisor CRITICAL "Security Definer View" finding for
+-- public.user_public_profiles (created in 018_user_profile.sql).
+--
+-- Why it is flagged: a Postgres view runs with the privileges of its OWNER by
+-- default (here the migration/postgres role). Because that owner bypasses RLS,
+-- the view reads the underlying `users` table with elevated rights regardless of
+-- who queries it — the classic "security definer view" pattern the Advisor warns
+-- about. It is a genuine RLS-bypass shape, not a false positive.
+--
+-- Why it is NOT currently a PII leak: the view exposes only non-sensitive
+-- profile columns (name, avatar, headline, skills, bio, location, availability,
+-- role). It never selects `email` or `phone`. So today no contact PII is exposed
+-- through it — but the RLS bypass is still worth closing.
+--
+-- Fix: make the view SECURITY INVOKER (Postgres 15+, supported by Supabase) so it
+-- evaluates the querying role's RLS policies and column privileges. This is safe:
+--   * Row policy `users_public_read ON users USING (true)` (002_rls.sql) already
+--     grants row visibility to anon + authenticated.
+--   * Every column the view selects is covered by the anon column grants (028)
+--     and the authenticated column grants (044), so anonymous and logged-in reads
+--     keep working with no behavior change.
+--   * email/phone remain unreadable to anon/authenticated (028 + 044).
+
+ALTER VIEW public.user_public_profiles SET (security_invoker = on);

@@ -1,0 +1,26 @@
+================ k6 LOAD SUMMARY ================
+  Total requests               1136
+  Request rate                 6.28 req/s
+  Iterations                   1136
+  Max VUs                      20
+  HTTP failed                  0.00% (0 failed reqs)
+  Checks passed                100.00% (2272/2272)
+  --- latency (http_req_duration) ---
+  avg                          649.9ms
+  min                          191.9ms
+  med                          709.2ms
+  p90                          822.7ms
+  p95                          921.3ms
+  max                          4032.7ms
+  --- per-page p95 ---
+  community                    p95 939.4ms  avg 705.9ms
+  courses                      p95 1012.7ms  avg 765.6ms
+  courses_search               p95 865.1ms  avg 696.2ms
+  home                         p95 548.0ms  avg 309.8ms
+  jobs                         p95 936.4ms  avg 706.7ms
+  services                     p95 897.9ms  avg 713.4ms
+  --- thresholds ---
+  http_req_failed rate<0.01    PASS
+  checks rate>0.98             PASS
+  http_req_duration p(95)<2500 PASS
+=========================================================
